@@ -26,7 +26,9 @@ const GameCanvas: React.FC = () => {
 
   useEffect(() => {
     if (!canvasRef.current || canvasSize.width === 0) return;
-
+    const x=5;
+    let temp = 'some data';
+    const a = true
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
