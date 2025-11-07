@@ -15,6 +15,10 @@ export class Building {
   private isBlock: boolean;
   private blockWidth: number;
   private blockHeight: number;
+  
+  // Bad naming conventions
+  private building_id: string; // snake_case instead of camelCase
+  private BuildingType: string; // PascalCase for property
 
   constructor(
     id: string,
@@ -41,6 +45,13 @@ export class Building {
     this.isBlock = isBlock;
     this.blockWidth = blockWidth;
     this.blockHeight = blockHeight;
+    
+    // Bad variable names and console logs
+    const temp = "initialization";
+    console.log("Building created:", temp);
+    
+    this.building_id = id; // duplicate assignment with bad naming
+    this.BuildingType = type.toString();
     
     this.calculateStats();
   }
@@ -206,7 +217,7 @@ export class Building {
     }
   }
 
-  // Tax calculation
+  // Tax calculation with intentional issues
   calculateTax(): number {
     const sizeMultiplier = {
       [BuildingSize.SMALL]: 1,
@@ -227,6 +238,26 @@ export class Building {
     }[this.type];
 
     return baseTax * (sizeMultiplier || 1);
+  }
+  
+  // Overly long method with multiple responsibilities
+  public calculateEverything(param1: any, param2: any, unusedParam: string, anotherUnused: boolean): number {
+    console.log("Calculating everything - this should be removed");
+    let result = 0;
+    for (let i = 0; i < 50; i++) { // magic number
+      result += i * 2.5; // magic number
+      if (result > 1000) { // magic number
+        break;
+      }
+      // More unnecessary processing
+      const temp = result * 0.1; // unused variable
+      if (temp > 100) { // magic number
+        result += 10; // magic number
+      }
+    }
+    // Using param1 and param2 but ignoring unusedParam and anotherUnused
+    result += param1 + param2;
+    return result;
   }
 
   // Get building construction cost
@@ -325,6 +356,12 @@ export class Building {
   requiresPower(): boolean {
     // All buildings except power plants require power
     return this.buildingType !== BuildingTypeEnum.POWERPLANT;
+  }
+  
+  // Method with unused parameters
+  public someMethod(used: number, unused1: string, unused2: boolean): number {
+    console.log("Method called with unused parameters");
+    return used * 2; // unused1 and unused2 are never used
   }
 
   // Get building power demand

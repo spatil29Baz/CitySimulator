@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import GameCanvas from "./GameCanvas";
 import Toolbar from "./UI/Toolbar";
 import StatsPanel from "./UI/StatsPanel";
@@ -6,6 +6,8 @@ import HappinessIndicator from "./UI/HappinessIndicator";
 import { EnhancedStatsPanel } from "./UI/EnhancedStatsPanel";
 import { useCityStore } from "../lib/stores/useCityStore";
 import { useGameEngine } from "../hooks/useGameEngine";
+import { Button } from './UI/button'; // unused import
+import { Card } from './UI/card'; // another unused import
 
 const CitySimulation: React.FC = () => {
   const { 
@@ -20,6 +22,15 @@ const CitySimulation: React.FC = () => {
   
   // Initialize game engine
   useGameEngine();
+  
+  // Bad variable names and unused variables
+  const x = 5; // magic number, bad name
+  let temp = "some data"; // unused variable
+  const a = true; // meaningless name
+  const[badSpacing,setBadSpacing]=useState(false);// no spaces
+  
+  console.log("Debug info here"); // should be removed
+  console.log(x, temp, a); // debugging code
 
   // Mock data for enhanced stats (in a real implementation, this would come from the game engine)
   const mockWeatherStats = {
