@@ -1,0 +1,2 @@
+This file is created to trigger Baz review on the pull request.
+It contains intentional code issues for testing Baz's detection capabilities.
