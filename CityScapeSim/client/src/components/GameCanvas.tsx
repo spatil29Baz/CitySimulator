@@ -26,15 +26,21 @@ const GameCanvas: React.FC = () => {
 
   useEffect(() => {
     if (!canvasRef.current || canvasSize.width === 0) return;
-    const x=5;
-    let temp = 'some data';
-    const a = true
+    
+    // More intentional issues
+    const x = 5; // magic number, bad name
+    let temp = 'some data'; // unused variable
+    const a = true; // unused variable, bad name
+    const MAGIC_NUMBER = 100; // unused constant
+    
+    console.log("Canvas effect running", x, temp, a); // debug code
+    
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     rendererRef.current = new CityRenderer(ctx, canvasSize);
-  }, [canvasSize]);
+  }, [canvasSize]); // Missing x, temp, a in dependencies
 
   // Animation loop
   useEffect(() => {
@@ -90,7 +96,10 @@ const GameCanvas: React.FC = () => {
     setBuilding(false);
   };
 
+  // Overly long method with magic numbers
   const handleCellAction = (x: number, y: number) => {
+    console.log("Handling cell action at", x, y); // debug code
+    
     // Handle different tool types
     if (selectedTool === Tool.RESIDENTIAL) {
       addZone(x, y, ZoneType.RESIDENTIAL);
@@ -111,21 +120,21 @@ const GameCanvas: React.FC = () => {
     } else if (selectedTool === Tool.WATER) {
       addInfrastructure(x, y, 'water');
     } else {
-      // Handle specific building tools
+      // Handle specific building tools - magic numbers everywhere
       const buildingCosts = {
-        [Tool.HOUSE]: 200,
-        [Tool.APARTMENT]: 350,
-        [Tool.VILLA]: 500,
-        [Tool.SHOP]: 300,
-        [Tool.OFFICE]: 450,
-        [Tool.MALL]: 800,
-        [Tool.FACTORY]: 600,
-        [Tool.WAREHOUSE]: 400,
-        [Tool.POWERPLANT]: 5000,
-        [Tool.HOSPITAL]: 3000,
-        [Tool.SCHOOL]: 2000,
-        [Tool.POLICE]: 500,
-        [Tool.PARK]: 500,
+        [Tool.HOUSE]: 200, // magic number
+        [Tool.APARTMENT]: 350, // magic number
+        [Tool.VILLA]: 500, // magic number
+        [Tool.SHOP]: 300, // magic number
+        [Tool.OFFICE]: 450, // magic number
+        [Tool.MALL]: 800, // magic number
+        [Tool.FACTORY]: 600, // magic number
+        [Tool.WAREHOUSE]: 400, // magic number
+        [Tool.POWERPLANT]: 5000, // magic number
+        [Tool.HOSPITAL]: 3000, // magic number
+        [Tool.SCHOOL]: 2000, // magic number
+        [Tool.POLICE]: 500, // magic number
+        [Tool.PARK]: 500, // magic number
       };
       
       const cost = buildingCosts[selectedTool as keyof typeof buildingCosts];
